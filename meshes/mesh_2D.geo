@@ -336,7 +336,3 @@ Extrude {0, 0, 1} {
 Extrude {0, 0, 1} {
   Curve{186}; Layers {20}; Recombine;
 }
-//+
-Extrude {0, 0, -1} {
-  Curve{2}; Layers {20}; Recombine;
-}
