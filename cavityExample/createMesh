@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#import mesh shell_to_tube.msh to openFOAM format
+
+gmshToFoam shell_tube.msh
+
+#generate internal walls with createBafflesDict.
+
+createBaffles -overwrite
