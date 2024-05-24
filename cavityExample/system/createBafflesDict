@@ -19,23 +19,21 @@ baffles
 {
     tube_baffle
     {
-        type        faceZones
+        type        faceZone;
         zoneName    tube_wall;
 
         owner
         {
             name        tube_to_shell;
-            type        patch;
-            neighbourRegion shell_fluid;
-            neighbourPatch shell_to_fluid;
+            type        wall;
+            physicalType wall;
         }
 
         neighbour
         {
             name        shell_to_tube;
-            type        patch;
-            neighbourRegion tube_fluid;
-            neighbourPatch tube_to_shell;
+            type        wall;
+            physicaltype wall;
         }
     }
 }
