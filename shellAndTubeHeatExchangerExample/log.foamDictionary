@@ -1,0 +1,12 @@
+New entry castellatedMesh on;
+
+New entry snap            on;
+
+New entry addLayers       off;
+
+New entry castellatedMesh off;
+
+New entry snap            off;
+
+New entry addLayers       on;
+

@@ -1,0 +1,145 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  11
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 11-c219200fdb8b
+Exec   : decomposePar -copyZero
+Date   : May 24 2024
+Time   : 19:30:55
+Host   : "henriqueccaldas"
+PID    : 62734
+I/O    : uncollated
+Case   : /home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+
+
+Decomposing mesh region0
+
+Create mesh
+
+Calculating distribution of cells
+Selecting decomposer scotch
+
+Finished decomposition in 0.883638 s
+
+Calculating original mesh data
+
+Distributing cells to processors
+
+Distributing faces to processors
+
+Distributing points to processors
+
+Constructing processor meshes
+
+Processor 0
+    Number of cells = 40489
+    Number of faces shared with processor 1 = 1573
+    Number of faces shared with processor 2 = 1202
+    Number of faces shared with processor 3 = 333
+    Number of faces shared with processor 5 = 1702
+    Number of faces shared with processor 7 = 675
+    Number of processor patches = 5
+    Number of processor faces = 5485
+    Number of boundary faces = 2731
+
+Processor 1
+    Number of cells = 40195
+    Number of faces shared with processor 0 = 1573
+    Number of faces shared with processor 2 = 64
+    Number of faces shared with processor 3 = 1296
+    Number of processor patches = 3
+    Number of processor faces = 2933
+    Number of boundary faces = 4721
+
+Processor 2
+    Number of cells = 39993
+    Number of faces shared with processor 0 = 1202
+    Number of faces shared with processor 1 = 64
+    Number of faces shared with processor 3 = 2161
+    Number of faces shared with processor 7 = 1154
+    Number of processor patches = 4
+    Number of processor faces = 4581
+    Number of boundary faces = 3463
+
+Processor 3
+    Number of cells = 39848
+    Number of faces shared with processor 0 = 333
+    Number of faces shared with processor 1 = 1296
+    Number of faces shared with processor 2 = 2161
+    Number of processor patches = 3
+    Number of processor faces = 3790
+    Number of boundary faces = 4394
+
+Processor 4
+    Number of cells = 39920
+    Number of faces shared with processor 5 = 1561
+    Number of faces shared with processor 6 = 1148
+    Number of processor patches = 2
+    Number of processor faces = 2709
+    Number of boundary faces = 4541
+
+Processor 5
+    Number of cells = 40512
+    Number of faces shared with processor 0 = 1702
+    Number of faces shared with processor 4 = 1561
+    Number of faces shared with processor 6 = 247
+    Number of faces shared with processor 7 = 1011
+    Number of processor patches = 4
+    Number of processor faces = 4521
+    Number of boundary faces = 3151
+
+Processor 6
+    Number of cells = 40553
+    Number of faces shared with processor 4 = 1148
+    Number of faces shared with processor 5 = 247
+    Number of faces shared with processor 7 = 1367
+    Number of processor patches = 3
+    Number of processor faces = 2762
+    Number of boundary faces = 4634
+
+Processor 7
+    Number of cells = 40490
+    Number of faces shared with processor 0 = 675
+    Number of faces shared with processor 2 = 1154
+    Number of faces shared with processor 5 = 1011
+    Number of faces shared with processor 6 = 1367
+    Number of processor patches = 4
+    Number of processor faces = 4207
+    Number of boundary faces = 3265
+
+Number of processor faces = 15494
+Max number of cells = 40553 (0.752795% above average 40250)
+Max number of processor patches = 5 (42.8571% above average 3.5)
+Max number of faces between processors = 5485 (41.6032% above average 3873.5)
+
+Time = 0s
+Processor 0: copying "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/0"
+ to "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/processor0/0"
+Processor 1: copying "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/0"
+ to "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/processor1/0"
+Processor 2: copying "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/0"
+ to "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/processor2/0"
+Processor 3: copying "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/0"
+ to "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/processor3/0"
+Processor 4: copying "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/0"
+ to "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/processor4/0"
+Processor 5: copying "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/0"
+ to "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/processor5/0"
+Processor 6: copying "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/0"
+ to "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/processor6/0"
+Processor 7: copying "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/0"
+ to "/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellAndTubeHeatExchanger/processor7/0"
+
+End
+
