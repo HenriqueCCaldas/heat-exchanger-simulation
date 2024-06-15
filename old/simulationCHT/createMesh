@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#import mesh shell_to_tube.msh to openFOAM format
+
+gmshToFoam shellTubeFinal.msh
+
+#print the mesh to check properties before baffle implementation
+
+checkMesh
+
+#generate internal walls with createBafflesDict.
+
+splitMeshRegions -cellZones -overwrite
+
+#print the mesh to check properties
+
+checkMesh

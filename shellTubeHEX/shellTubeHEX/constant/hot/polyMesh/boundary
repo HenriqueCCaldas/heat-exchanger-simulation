@@ -1,0 +1,62 @@
+FoamFile
+{
+	version	2.0;
+	format	ascii;
+	class	polyBoundaryMesh;
+	location	"constant/hot/polyMesh";
+	object	boundary;
+}
+6
+(
+	exchanger
+	{
+		type	wall;
+		startFace	266509;
+		nFaces	4300;
+	}
+	exchanger_hot_inlet
+	{
+		type	patch;
+		startFace	270809;
+		nFaces	204;
+	}
+	exchanger_hot_outlet
+	{
+		type	patch;
+		startFace	271013;
+		nFaces	204;
+	}
+	pipes
+	{
+		type	mappedWall;
+		sampleRegion	cold;
+		samplePatch	pipes;
+		sampleMode	nearestPatchFace;
+		offsetMode	uniform;
+		offset	(0 0 0);
+		startFace	271217;
+		nFaces	18560;
+	}
+	pipes_inlet_baffle
+	{
+		type	mappedWall;
+		sampleRegion	cold;
+		samplePatch	pipes_inlet_baffle;
+		sampleMode	nearestPatchFace;
+		offsetMode	uniform;
+		offset	(0 0 0);
+		startFace	289777;
+		nFaces	1192;
+	}
+	pipes_outlet_baffle
+	{
+		type	mappedWall;
+		sampleRegion	cold;
+		samplePatch	pipes_outlet_baffle;
+		sampleMode	nearestPatchFace;
+		offsetMode	uniform;
+		offset	(0 0 0);
+		startFace	290969;
+		nFaces	1192;
+	}
+)

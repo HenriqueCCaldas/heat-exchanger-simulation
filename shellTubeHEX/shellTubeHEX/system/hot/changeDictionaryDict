@@ -1,0 +1,128 @@
+FoamFile
+{
+	version	2.0;
+	format	binary;
+	class	dictionary;
+	location	"system/hot";
+	object	changeDictionaryDict;
+}
+p_rgh
+{
+	boundaryField
+	{
+		exchanger
+		{
+			type	fixedFluxPressure;
+		}
+		exchanger_hot_inlet
+		{
+			type	fixedFluxPressure;
+		}
+		exchanger_hot_outlet
+		{
+			type	fixedValue;
+			value	uniform 100000;
+		}
+		pipes
+		{
+			type	fixedFluxPressure;
+		}
+		pipes_inlet_baffle
+		{
+			type	fixedFluxPressure;
+		}
+		pipes_outlet_baffle
+		{
+			type	fixedFluxPressure;
+		}
+	}
+}
+p
+{
+	boundaryField
+	{
+	}
+}
+U
+{
+	boundaryField
+	{
+		exchanger
+		{
+			type	noSlip;
+		}
+		exchanger_hot_inlet
+		{
+			type	surfaceNormalFixedValue;
+			refValue	uniform -0.02;
+		}
+		exchanger_hot_outlet
+		{
+			type	pressureInletOutletVelocity;
+		}
+		pipes
+		{
+			type	noSlip;
+		}
+		pipes_inlet_baffle
+		{
+			type	noSlip;
+		}
+		pipes_outlet_baffle
+		{
+			type	noSlip;
+		}
+	}
+}
+T
+{
+	boundaryField
+	{
+		exchanger
+		{
+			type	zeroGradient;
+		}
+		exchanger_hot_inlet
+		{
+			type	fixedValue;
+			value	uniform 383;
+		}
+		exchanger_hot_outlet
+		{
+			type	zeroGradient;
+		}
+		pipes
+		{
+			type	compressible::turbulentTemperatureCoupledBaffleMixed;
+			kappaMethod	fluidThermo;
+			kappa	none;
+			neighbourFieldName	T;
+			Tnbr	T;
+			alphaAni	Anialpha;
+			thicknessLayers	(0.005);
+			kappaLayers	(385.0);
+		}
+		pipes_inlet_baffle
+		{
+			type	compressible::turbulentTemperatureCoupledBaffleMixed;
+			kappaMethod	fluidThermo;
+			kappa	none;
+			neighbourFieldName	T;
+			Tnbr	T;
+			alphaAni	Anialpha;
+			thicknessLayers	(0.005);
+			kappaLayers	(385.0);
+		}
+		pipes_outlet_baffle
+		{
+			type	compressible::turbulentTemperatureCoupledBaffleMixed;
+			kappaMethod	fluidThermo;
+			kappa	none;
+			neighbourFieldName	T;
+			Tnbr	T;
+			alphaAni	Anialpha;
+			thicknessLayers	(0.005);
+			kappaLayers	(385.0);
+		}
+	}
+}

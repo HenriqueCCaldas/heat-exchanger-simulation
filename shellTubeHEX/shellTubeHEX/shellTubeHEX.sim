@@ -1,0 +1,897 @@
+application
+{
+	mode	normal;
+}
+summary
+{
+}
+parameters
+{
+}
+probes
+{
+}
+materials
+{
+	regions
+	{
+		hot	water-liquid;
+		cold	water-liquid;
+	}
+}
+geometry
+{
+	exchanger
+	{
+		scale	(1 1 1);
+		location	(0 0 0);
+		rotationAngle	0;
+		rotationAxis	(1 1 1);
+	}
+	baffles
+	{
+		scale	(1 1 1);
+		location	(0 0 0);
+		rotationAngle	0;
+		rotationAxis	(1 1 1);
+	}
+	pipes
+	{
+		scale	(1 1 1);
+		location	(0 0 0);
+		rotationAngle	0;
+		rotationAxis	(1 1 1);
+	}
+}
+primitiveMesh
+{
+	type	box;
+	box
+	{
+		min	(-0.18183 -0.1212 -0.17475);
+		max	(0.18683 0.1212 0.78475);
+		division	(37 25 91);
+		grading	(1 1 1);
+		boundaries
+		{
+			x_plus
+			{
+				name	boundaries;
+				type	patch;
+			}
+			y_minus
+			{
+				name	boundaries;
+				type	patch;
+			}
+			z_plus
+			{
+				name	boundaries;
+				type	patch;
+			}
+			x_minus
+			{
+				name	boundaries;
+				type	patch;
+			}
+			y_plus
+			{
+				name	boundaries;
+				type	patch;
+			}
+			z_minus
+			{
+				name	boundaries;
+				type	patch;
+			}
+		}
+	}
+	cylinder
+	{
+		axis	X;
+		origin	0;
+		radius	1;
+		length	1;
+		radialFraction	0.5;
+		radialDivision	10;
+		radialGrading	1;
+		axialDivision	10;
+		axialGrading	1;
+		circumferentialDivision	10;
+		boundaries
+		{
+			inlet
+			{
+				name	boundaries;
+				type	patch;
+			}
+			outlet
+			{
+				name	boundaries;
+				type	patch;
+			}
+			cylinder
+			{
+				name	boundaries;
+				type	patch;
+			}
+		}
+	}
+	plate
+	{
+		minx	-0.5;
+		miny	-0.5;
+		maxx	0.5;
+		maxy	0.5;
+		divisionx	10;
+		divisiony	10;
+		gradingx	1;
+		gradingy	1;
+		boundaries
+		{
+			x_minus
+			{
+				name	boundaries;
+				type	patch;
+			}
+			y_minus
+			{
+				name	boundaries;
+				type	patch;
+			}
+			y_plus
+			{
+				name	boundaries;
+				type	patch;
+			}
+			x_plus
+			{
+				name	boundaries;
+				type	patch;
+			}
+		}
+	}
+	wedge
+	{
+		origin	0;
+		radius	1;
+		length	1;
+		radialDivision	10;
+		radialGrading	1;
+		axialDivision	10;
+		axialGrading	1;
+		boundaries
+		{
+			inlet
+			{
+				name	boundaries;
+				type	patch;
+			}
+			cylinder
+			{
+				name	boundaries;
+				type	patch;
+			}
+			outlet
+			{
+				name	boundaries;
+				type	patch;
+			}
+		}
+	}
+}
+run
+{
+	parallel	false;
+	processors	8;
+}
+regionProperties
+{
+	default
+	{
+		bafflesSplit	false;
+		cellZones
+		{
+		}
+	}
+	bafflesSplit	false;
+	cellZones
+	{
+	}
+	bafflesSplit	false;
+	cellZones
+	{
+	}
+}
+fieldInputs
+{
+	hot
+	{
+		p_rgh
+		{
+			internalField	uniform 100000;
+			boundaryField
+			{
+				exchanger
+				{
+					type	fixedFluxPressure;
+				}
+				exchanger_hot_inlet
+				{
+					type	fixedFluxPressure;
+				}
+				exchanger_hot_outlet
+				{
+					type	fixedValue;
+					value	"uniform 100000";
+				}
+				pipes
+				{
+					type	fixedFluxPressure;
+				}
+				pipes_inlet_baffle
+				{
+					type	fixedFluxPressure;
+				}
+				pipes_outlet_baffle
+				{
+					type	fixedFluxPressure;
+				}
+			}
+		}
+		p
+		{
+			internalField	uniform 100000;
+			boundaryField
+			{
+				exchanger
+				{
+					type	calculated;
+				}
+				exchanger_hot_inlet
+				{
+					type	calculated;
+				}
+				exchanger_hot_outlet
+				{
+					type	calculated;
+				}
+				pipes
+				{
+					type	calculated;
+				}
+				pipes_inlet_baffle
+				{
+					type	calculated;
+				}
+				pipes_outlet_baffle
+				{
+					type	calculated;
+				}
+			}
+		}
+		U
+		{
+			internalField	uniform (0 0 0);
+			boundaryField
+			{
+				exchanger
+				{
+					type	noSlip;
+				}
+				exchanger_hot_inlet
+				{
+					type	surfaceNormalFixedValue;
+					refValue	"uniform -0.02";
+				}
+				exchanger_hot_outlet
+				{
+					type	pressureInletOutletVelocity;
+				}
+				pipes
+				{
+					type	noSlip;
+				}
+				pipes_inlet_baffle
+				{
+					type	noSlip;
+				}
+				pipes_outlet_baffle
+				{
+					type	noSlip;
+				}
+			}
+		}
+		T
+		{
+			internalField	uniform 283;
+			boundaryField
+			{
+				exchanger
+				{
+					type	zeroGradient;
+				}
+				exchanger_hot_inlet
+				{
+					type	fixedValue;
+					value	"uniform 383";
+				}
+				exchanger_hot_outlet
+				{
+					type	zeroGradient;
+				}
+				pipes
+				{
+					type	compressible::turbulentTemperatureCoupledBaffleMixed;
+					kappaMethod	fluidThermo;
+					kappa	none;
+					neighbourFieldName	T;
+					Tnbr	T;
+					alphaAni	Anialpha;
+					thicknessLayers	(0.005);
+					kappaLayers	(385.0);
+				}
+				pipes_inlet_baffle
+				{
+					type	compressible::turbulentTemperatureCoupledBaffleMixed;
+					kappaMethod	fluidThermo;
+					kappa	none;
+					neighbourFieldName	T;
+					Tnbr	T;
+					alphaAni	Anialpha;
+					thicknessLayers	(0.005);
+					kappaLayers	(385.0);
+				}
+				pipes_outlet_baffle
+				{
+					type	compressible::turbulentTemperatureCoupledBaffleMixed;
+					kappaMethod	fluidThermo;
+					kappa	none;
+					neighbourFieldName	T;
+					Tnbr	T;
+					alphaAni	Anialpha;
+					thicknessLayers	(0.005);
+					kappaLayers	(385.0);
+				}
+			}
+		}
+	}
+	cold
+	{
+		p_rgh
+		{
+			internalField	uniform 100000;
+			boundaryField
+			{
+				baffles
+				{
+					type	fixedFluxPressure;
+				}
+				baffles_slave
+				{
+					type	fixedFluxPressure;
+				}
+				exchanger
+				{
+					type	fixedFluxPressure;
+				}
+				exchanger_cold_inlet
+				{
+					type	fixedFluxPressure;
+				}
+				exchanger_cold_outlet
+				{
+					type	fixedValue;
+					value	"uniform 100000";
+				}
+				pipes
+				{
+					type	fixedFluxPressure;
+				}
+				pipes_inlet_baffle
+				{
+					type	fixedFluxPressure;
+				}
+				pipes_outlet_baffle
+				{
+					type	fixedFluxPressure;
+				}
+			}
+		}
+		p
+		{
+			internalField	uniform 100000;
+			boundaryField
+			{
+				baffles
+				{
+					type	calculated;
+				}
+				baffles_slave
+				{
+					type	calculated;
+				}
+				exchanger
+				{
+					type	calculated;
+				}
+				exchanger_cold_inlet
+				{
+					type	calculated;
+				}
+				exchanger_cold_outlet
+				{
+					type	calculated;
+				}
+				pipes
+				{
+					type	calculated;
+				}
+				pipes_inlet_baffle
+				{
+					type	calculated;
+				}
+				pipes_outlet_baffle
+				{
+					type	calculated;
+				}
+			}
+		}
+		U
+		{
+			internalField	uniform (0 0 0);
+			boundaryField
+			{
+				baffles
+				{
+					type	noSlip;
+				}
+				baffles_slave
+				{
+					type	noSlip;
+				}
+				exchanger
+				{
+					type	noSlip;
+				}
+				exchanger_cold_inlet
+				{
+					type	surfaceNormalFixedValue;
+					refValue	"uniform -0.01";
+				}
+				exchanger_cold_outlet
+				{
+					type	pressureInletOutletVelocity;
+				}
+				pipes
+				{
+					type	noSlip;
+				}
+				pipes_inlet_baffle
+				{
+					type	noSlip;
+				}
+				pipes_outlet_baffle
+				{
+					type	noSlip;
+				}
+			}
+		}
+		T
+		{
+			internalField	uniform 283;
+			boundaryField
+			{
+				baffles
+				{
+					type	zeroGradient;
+				}
+				baffles_slave
+				{
+					type	zeroGradient;
+				}
+				exchanger
+				{
+					type	zeroGradient;
+				}
+				exchanger_cold_inlet
+				{
+					type	totalTemperature;
+					T0	"uniform 283";
+					gamma	1.124;
+				}
+				exchanger_cold_outlet
+				{
+					type	zeroGradient;
+				}
+				pipes
+				{
+					type	compressible::turbulentTemperatureCoupledBaffleMixed;
+					kappaMethod	fluidThermo;
+					kappa	none;
+					neighbourFieldName	T;
+					Tnbr	T;
+					alphaAni	Anialpha;
+				}
+				pipes_inlet_baffle
+				{
+					type	compressible::turbulentTemperatureCoupledBaffleMixed;
+					kappaMethod	fluidThermo;
+					kappa	none;
+					neighbourFieldName	T;
+					Tnbr	T;
+					alphaAni	Anialpha;
+				}
+				pipes_outlet_baffle
+				{
+					type	compressible::turbulentTemperatureCoupledBaffleMixed;
+					kappaMethod	fluidThermo;
+					kappa	none;
+					neighbourFieldName	T;
+					Tnbr	T;
+					alphaAni	Anialpha;
+				}
+			}
+		}
+	}
+}
+inputs
+{
+	default
+	{
+	}
+	hot
+	{
+	}
+	cold
+	{
+	}
+}
+regionInit
+{
+	patchInitializationMode	onInitialization;
+}
+initialization
+{
+	potentialInit	false;
+	nNonOrthogonalCorrectors	8;
+	mapInit	false;
+	mapConsistent	false;
+}
+mesh
+{
+}
+Graphics3D
+{
+	MeshParameters
+	{
+		cold
+		{
+			baffles
+			{
+				color	(155 50 0);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			baffles_slave
+			{
+				color	(155 180 50);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			exchanger
+			{
+				color	(51 255 0);
+				transparency	0.85;
+				faceHide	false;
+				edgesHide	false;
+			}
+			exchanger_cold_inlet
+			{
+				color	(0 255 178);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			exchanger_cold_outlet
+			{
+				color	(0 102 255);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			pipes
+			{
+				color	(128 0 255);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			pipes_inlet_baffle
+			{
+				color	(255 0 153);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			pipes_outlet_baffle
+			{
+				color	(255 77 0);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+		}
+		hot
+		{
+			exchanger
+			{
+				color	(155 50 0);
+				transparency	0.85;
+				faceHide	false;
+				edgesHide	false;
+			}
+			exchanger_hot_inlet
+			{
+				color	(155 180 50);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			exchanger_hot_outlet
+			{
+				color	(51 255 0);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			pipes
+			{
+				color	(0 255 178);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			pipes_inlet_baffle
+			{
+				color	(0 102 255);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+			pipes_outlet_baffle
+			{
+				color	(128 0 255);
+				transparency	0.0;
+				faceHide	false;
+				edgesHide	false;
+			}
+		}
+	}
+	CellZonesParameters
+	{
+	}
+	ProbeParameters
+	{
+	}
+	View
+	{
+		SavedViews
+		{
+		}
+	}
+	PostprocessingParameters
+	{
+		ActiveTime	0;
+		ActiveField	Solid;
+	}
+	GeometryParameters
+	{
+		baffles
+		{
+			color	(112 128 144);
+			transparency	0.0;
+			hide	true;
+		}
+		exchanger
+		{
+			color	(112 128 144);
+			transparency	0.6;
+			hide	true;
+		}
+		pipes
+		{
+			color	(112 128 144);
+			transparency	0.0;
+			hide	true;
+		}
+	}
+	postprocessingPlots
+	{
+		residuals
+		{
+			properties
+			{
+				title	;
+				isXGridVisible	true;
+				isYGridVisible	true;
+				xLabel	Iteration [-];
+				yLabel	Residuum [-];
+			}
+			series
+			{
+				Ux
+				{
+					label	Ux;
+					color	(0 0 255);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				Uy
+				{
+					label	Uy;
+					color	(255 0 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				Uz
+				{
+					label	Uz;
+					color	(0 255 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				p
+				{
+					label	p;
+					color	(0 0 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				p_rgh
+				{
+					label	p_rgh;
+					color	(0 0 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				omega
+				{
+					label	omega;
+					color	(255 200 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				epsilon
+				{
+					label	epsilon;
+					color	(255 200 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				k
+				{
+					label	k;
+					color	(0 255 255);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				Uz_cold
+				{
+					label	Uz_cold;
+					color	(255 0 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				p_rgh_cold
+				{
+					label	p_rgh_cold;
+					color	(0 169 255);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				h_hot
+				{
+					label	h_hot;
+					color	(254 0 255);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				Uz_hot
+				{
+					label	Uz_hot;
+					color	(255 140 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				Uy_hot
+				{
+					label	Uy_hot;
+					color	(0 255 55);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				p_rgh_hot
+				{
+					label	p_rgh_hot;
+					color	(0 29 255);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				h_cold
+				{
+					label	h_cold;
+					color	(255 0 114);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				Ux_hot
+				{
+					label	Ux_hot;
+					color	(229 255 0);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				Uy_cold
+				{
+					label	Uy_cold;
+					color	(0 255 195);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				Ux_cold
+				{
+					label	Ux_cold;
+					color	(110 0 255);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+				h
+				{
+					label	h;
+					color	(254 0 255);
+					isVisible	true;
+					thickness	1;
+					representation	Solid;
+				}
+			}
+		}
+	}
+	SlicesParameters
+	{
+	}
+}
+meshing
+{
+	parallel	false;
+	processors	8;
+	meshingStages
+	{
+		Base	true;
+		Mesh	true;
+		Layers	true;
+	}
+}
+slices
+{
+}

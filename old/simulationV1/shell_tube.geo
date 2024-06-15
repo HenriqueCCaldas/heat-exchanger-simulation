@@ -1,16 +1,16 @@
 // Define the length of the extrusion
-length = 20;
+length = 2;
 
 // Define points
-Point(1) = {0, 0, 0, 1.0};
-Point(2) = {1, 0, 0, 1.0};
-Point(3) = {0, 1, 0, 1.0};
-Point(4) = {0, -1, 0, 1.0};
-Point(5) = {-1, 0, 0, 1.0};
-Point(6) = {4, 0, 0, 1.0};
-Point(7) = {-4, 0, 0, 1.0};
-Point(8) = {0, 4, 0, 1.0};
-Point(9) = {0, -4, 0, 1.0};
+Point(1) = {0, 0, 0, 0.1};
+Point(2) = {0.1, 0, 0, 0.1};
+Point(3) = {0, 0.1, 0, 0.1};
+Point(4) = {0, -0.1, 0, 0.1};
+Point(5) = {-0.1, 0, 0, 0.1};
+Point(6) = {0.4, 0, 0, 0.1};
+Point(7) = {-0.4, 0, 0, 0.1};
+Point(8) = {0, 0.4, 0, 0.1};
+Point(9) = {0, -0.4, 0, 0.1};
 
 // Define circles
 Circle(1) = {2, 1, 3};
@@ -39,12 +39,12 @@ Extrude {0, 0, length} {
 }
 
 // Define physical groups
-//Physical Surface("tube_inlet", 105) = {1};
-//Physical Surface("tube_outlet", 106) = {30};
+Physical Surface("tube_inlet", 105) = {1};
+Physical Surface("tube_outlet", 106) = {30};
 //Physical Surface("tube_wall", 107) = {17, 21, 25, 29};
-//Physical Surface("shell_wall", 108) = {59, 63, 67, 71};
-//Physical Surface("shell_outlet", 109) = {2};
-//Physical Surface("shell_inlet", 110) = {72};
+Physical Surface("shell_wall", 108) = {59, 63, 67, 71};
+Physical Surface("shell_outlet", 109) = {2};
+Physical Surface("shell_inlet", 110) = {72};
 Physical Volume("shell_fluid", 111) = {2};
 Physical Volume("tube_fluid", 112) = {1};
 
