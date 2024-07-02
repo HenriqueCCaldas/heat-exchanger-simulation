@@ -15,16 +15,17 @@ temperature3 = data3["avg(T)"]
 plt.grid(True) 
 
 time900 = data1["Time"]
-#time300 = data3["Time"]
 
 plt.plot(time900, temperature1, label='Ushell = 0.01(m/s), Re = 1000', color='red')
 plt.plot(time900, temperature2, label='Ushell = 0.03 (m/s), Re = 3000', color='green')
 plt.plot(time900, temperature3, label='Ushell = 0.05 (m/s), Re = 5000', color='blue')
+
 plt.legend()
 plt.xlabel('Time (s)')
 plt.ylabel('Temperature (K)')
 plt.title('Outlet Average Temperature')
 plt.xticks(range(0, int(max(time900)) + 100, 100))
+plt.savefig('temperaturePlotTotal.png')
 plt.show()
 
 

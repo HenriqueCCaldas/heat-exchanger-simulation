@@ -16,7 +16,6 @@ velocity1 = data1["avg(U (Magnitude))"]
 velocity2 = data2["avg(U (Magnitude))"]
 velocity3 = data3["avg(U (Magnitude))"]
 
-#time300 = data1["Time"]
 time900 = data3["Time"]
 
 cp = 4179 # J/kg*K
@@ -28,14 +27,15 @@ Q2 = cp * density * (temperature2  * velocity2) * area
 Q3 = cp * density * (temperature3 * velocity3) * area
 
 
-plt.plot(time900, Q3, label='Ushell = 0.01(m/s)', color='red')
-#plt.plot(time900, Q1, label='Ushell = 0.05 (m/s)', color='green')
-#plt.plot(time900, Q2, label='Ushell = 0.1 (m/s)', color='blue')
+plt.plot(time900, Q3, label='Ushell = 0.01(m/s), Re=1000', color='red')
+plt.plot(time900, Q1, label='Ushell = 0.05 (m/s), Re = 3000', color='green')
+plt.plot(time900, Q2, label='Ushell = 0.1 (m/s), Re = 5000', color='blue')
 
 
 plt.legend()
 plt.xlabel('Time (s)')
 plt.ylabel('Heat Transfer Rate (W)')
 plt.title('Heat Transfer Rate')
-
+plt.xticks(range(0, int(max(time900)) + 100, 100))
+plt.savefig('heatTransferRateTotal.png')
 plt.show()
