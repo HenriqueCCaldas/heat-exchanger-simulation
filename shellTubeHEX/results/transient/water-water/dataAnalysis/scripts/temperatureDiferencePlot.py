@@ -29,19 +29,17 @@ time900NoBaffles = data4["Time"]
 
 # Choose the data to plot (Please select pairs 1-4, 2-5, 3-6)
 
-plt.plot(time900, diff1, label='Ushell = 0.01(m/s), Re = 1000', color='red')
-plt.plot(time900, diff2, label='Ushell = 0.03 (m/s), Re = 3000', color='green')
-plt.plot(time900, diff3, label='Ushell = 0.05 (m/s), Re = 5000', color='blue')
-#plt.plot(time900NoBaffles, temperature4, label='Ushell = 0.01(m/s), Re = 1000, No Baffles', color='blue')
-#plt.plot(time900, temperature5, label='Ushell = 0.03 (m/s), Re = 3000, No Baffles', color='purple')
-#plt.plot(time900, temperature6, label='Ushell = 0.05 (m/s), Re = 5000, No Baffles', color='orange')
+plt.plot(time900, diff1, label='Ushell = 0.01(m/s)', color='red')
+plt.plot(time900, diff2, label='Ushell = 0.03 (m/s)', color='blue')
+plt.plot(time900, diff3, label='Ushell = 0.05 (m/s)', color='green')
 
 plt.legend()
 plt.xlabel('Time (s)')
 plt.ylabel('Temperature (K)')
 plt.title('Outlet Average Temperature - Baffles vs No Baffles')
 plt.xticks(range(0, int(max(time900)) + 100, 100))
-plt.savefig('temperatureComparisonPlot.png')
-plt.show()
 
+fileName ="temperatureDifferenceBaffleNoBaffle"
+plt.savefig('/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellTubeHEX/results/transient/water-water/dataAnalysis/plots/general/'+fileName+'.png')
+plt.show()
 
