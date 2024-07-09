@@ -18,10 +18,10 @@ velocity3 = data3["avg(U (Magnitude))"]
 plt.grid(True) 
 time900 = data3["Time"]
 
-plt.plot(time900, velocity3, label='Ushell = 0.005 (m/s), color='black')
-plt.plot(time900, velocity1, label='Ushell = 0.01(m/s), color='red')
+plt.plot(time900, velocity3, label='Ushell = 0.005 (m/s)', color='black')
+plt.plot(time900, velocity1, label='Ushell = 0.01(m/s)', color='red')
 #plt.plot(time900, velocity1v2, label='Ushell = 0.01 (m/s) - No Resistance, color='green')
-plt.plot(time900, velocity2, label='Ushell = 0.079479 (m/s), color='blue')
+plt.plot(time900, velocity2, label='Ushell = 0.079479 (m/s)', color='blue')
 
 plt.legend()
 plt.xlabel('Time (s)')
