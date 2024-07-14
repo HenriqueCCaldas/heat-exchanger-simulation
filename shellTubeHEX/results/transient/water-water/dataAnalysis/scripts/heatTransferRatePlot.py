@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import math as math 
 from matplotlib.ticker import ScalarFormatter
 
+
 # Read the CSV file into a pandas DataFrame
 
 data1 = pd.read_csv("/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellTubeHEX/results/transient/water-water/dataAnalysis/data/baffles/outletResultsBaffleRe1000.csv")
@@ -43,23 +44,26 @@ Q4 = cp * density * ((temperature4 - initialTemperature) * velocity4) * area * 1
 Q5 = cp * density * ((temperature5 - initialTemperature) * velocity5) * area * 1/1000 # W to kW
 Q6 = cp * density * ((temperature6 - initialTemperature) * velocity6) * area * 1/1000 # W to kW
 
-plt.plot(time900, Q1, label='Ushell = 0.01(m/s)', color='red')
-plt.plot(time900, Q2, label='Ushell = 0.03 (m/s)', color='blue')
-plt.plot(time900, Q3, label='Ushell = 0.05 (m/s)', color='green')
-#plt.plot(time900NoBaffles, Q4, label='Ushell = 0.01(m/s), No Baffles', color='red')
-#plt.plot(time900, Q5, label='Ushell = 0.03 (m/s), No Baffles', color='blue')
-#plt.plot(time900, Q6, label='Ushell = 0.05 (m/s), No Baffles', color='green')
+
+#plt.plot(time900, Q1, label='Uin = 0.01(m/s)', color='red')
+#plt.plot(time900, Q2, label='Uin = 0.03 (m/s)', color='blue')
+#plt.plot(time900, Q3, label='Uin = 0.05 (m/s)', color='green')
+plt.plot(time900NoBaffles, Q4, label='Uin = 0.01(m/s), No Baffles', color='red', linestyle='dashed')
+plt.plot(time900, Q5, label='Uin = 0.03 (m/s), No Baffles', color='blue', linestyle='dashed')
+plt.plot(time900, Q6, label='Uin = 0.05 (m/s), No Baffles', color='green', linestyle='dashed')
 
 
 plt.legend()
-plt.xlabel('Time (s)')
-plt.ylabel('Heat Transfer Rate (kW)')
-plt.title('Heat Transfer Rate - With Baffles ')
-#plt.title('Heat Transfer Rate - Without Baffles ')
-plt.xticks(range(0, int(max(time900)) + 100, 100))
+plt.xlabel('Time (s)', fontsize=12)
+plt.ylabel('Heat Transfer Rate (kW)',fontsize=12)
+plt.ylim(0, 5)
+#plt.title('Heat Transfer Rate - With Baffles ', fontsize=12)
+plt.title(r'Heat Transfer Rate - Without Baffles ', fontsize=12)
+plt.xticks(range(0, int(max(time900)) + 100, 100), fontsize=12)
+plt.yticks(fontsize=12)
 
 plt.grid(True)
 
-fileName ="heatTransferRateBaffle"
+fileName ="heatTransferRateNoBaffle"
 plt.savefig('/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellTubeHEX/results/transient/water-water/dataAnalysis/plots/general/'+fileName+'.png')
 plt.show()

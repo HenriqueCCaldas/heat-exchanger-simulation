@@ -25,20 +25,22 @@ time900NoBaffles = data4["Time"]
 
 # Choose the data to plot (Please select pairs 1-4, 2-5, 3-6)
 
-#plt.plot(time900, temperature1, label='Baffles', color='red')
-#plt.plot(time900, temperature2, label='Baffles', color='blue')
-plt.plot(time900, temperature3, label='Baffles', color='green')
-#plt.plot(time900NoBaffles, temperature4, label='No Baffles', color='black')
-#plt.plot(time900, temperature5, label='No Baffles', color='orange')
-plt.plot(time900, temperature6, label='No Baffles', color='purple')
+plt.plot(time900, temperature1, label='uin = 0.01, Baffles', color='red')
+plt.plot(time900NoBaffles, temperature4, label='uin = 0.01, No Baffles', color='red', linestyle='dashed')
+plt.plot(time900, temperature2, label='uin = 0.03, Baffles', color='blue')
+plt.plot(time900, temperature5, label='uin = 0.03, No Baffles', color='blue', linestyle='dashed')
+plt.plot(time900, temperature3, label='uin = 0.05, Baffles', color='green')
+plt.plot(time900, temperature6, label='uin = 0.05, No Baffles', color='green', linestyle='dashed')
 
-plt.legend()
-plt.xlabel('Time (s)')
-plt.ylabel('Temperature (K)')
-plt.title('Outlet Average Temperature - Shell inlet velocity = 0.05 (m/s)')
-plt.xticks(range(0, int(max(time900)) + 100, 100))
-fileName ="TemperatureBaffleNoBaffleRe5000"
-plt.savefig('/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellTubeHEX/results/transient/water-water/dataAnalysis/plots/Re5000/'+fileName+'.png')
+
+plt.legend(fontsize= 12)
+plt.xlabel('Time (s)', fontsize= 20)
+plt.ylabel('Temperature (K)', fontsize= 20)
+plt.title('Shell Outlet Average Temperature - Baffles & No Baffles', fontsize= 20)
+plt.xticks(range(0, int(max(time900)) + 100, 100), fontsize= 20)
+plt.yticks(fontsize= 20)
+fileName ="TemperatureGeneral"
+plt.savefig('/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellTubeHEX/results/transient/water-water/dataAnalysis/plots/test/'+fileName+'.png')
 plt.show()
 
 

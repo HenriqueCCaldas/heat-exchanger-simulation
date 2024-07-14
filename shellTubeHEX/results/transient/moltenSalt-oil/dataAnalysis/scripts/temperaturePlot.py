@@ -18,16 +18,18 @@ time900 = data1["Time"]
 
 # Choose the data to plot (Please select pairs 1-4, 2-5, 3-6)
 
-plt.plot(time900, temperature1, label='Ushell = 0.01(m/s)', color='red')
+plt.plot(time900, temperarture3, label='Ushell = 0.005 (m/s)', color='red')
+plt.plot(time900, temperature1, label='Ushell = 0.01(m/s)', color='blue')
 #plt.plot(time900, temperature1v2, label='Ushell = 0.01 (m/s) - No Resistance', color='green')
-plt.plot(time900, temperature2, label='Ushell = 0.079479 (m/s)', color='blue')
-plt.plot(time900, temperarture3, label='Ushell = 0.005 (m/s)', color='black')
+plt.plot(time900, temperature2, label='Ushell = 0.079479 (m/s)', color='green')
+
 
 plt.legend()
-plt.xlabel('Time (s)')
-plt.ylabel('Temperature (K)')
-plt.title('Outlet Average Temperature - Molten Salt & Thermal Oil')
-plt.xticks(range(0, int(max(time900)) + 100, 100))
+plt.xlabel('Time (s)', fontsize = 12)
+plt.ylabel('Temperature (K)',  fontsize = 12)
+plt.title('Outlet Average Temperature - Molten Salt & Thermal Oil',  fontsize = 12)
+plt.xticks(range(0, int(max(time900)) + 100, 100),  fontsize = 12)
+plt.yticks( fontsize = 12)
 fileName ="TemperaturePlotGerenal"
 plt.savefig('/home/henrique/OpenFOAM/henrique-11/run/heat-exchanger-simulation/shellTubeHEX/results/transient/moltenSalt-oil/dataAnalysis/plots/' + fileName + '.png')
 plt.show()

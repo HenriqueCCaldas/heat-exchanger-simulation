@@ -34,16 +34,17 @@ Q1v2 = cp * density * ((temperature1v2 - initialTemperature) * velocity1v2) * ar
 Q2 = cp * density * ((temperature2 - initialTemperature) * velocity2) * area * 1/1000 # W to kW
 Q3 = cp * density * ((temperature3 - initialTemperature) * velocity3) * area * 1/1000 # W to kW
 
-plt.plot(time900, Q3, label='Ushell = 0.005(m/s)', color='black')
-plt.plot(time900, Q1, label='Ushell = 0.01(m/s)', color='red')
+plt.plot(time900, Q3, label='Ushell = 0.005(m/s)', color='red')
+plt.plot(time900, Q1, label='Ushell = 0.01(m/s)', color='blue')
 #plt.plot(time900, Q1v2, label='Ushell = 0.01(m/s) - No Resistance', color='green')
-plt.plot(time900, Q2, label='Ushell = 0.079479(m/s)', color='blue')
+plt.plot(time900, Q2, label='Ushell = 0.079479(m/s)', color='green')
 
 plt.legend()
-plt.xlabel('Time (s)')
-plt.ylabel('Heat Transfer Rate (kW)')
-plt.title('Heat Transfer Rate - Molten Salt & Thermal Oil ')
-plt.xticks(range(0, int(max(time900)) + 100, 100))
+plt.xlabel('Time (s)', fontsize = 12)
+plt.ylabel('Heat Transfer Rate (kW)', fontsize = 12)
+plt.title('Heat Transfer Rate - Molten Salt & Thermal Oil ', fontsize = 12)
+plt.xticks(range(0, int(max(time900)) + 100, 100), fontsize = 12 )
+plt.yticks(fontsize = 12)
 
 plt.grid(True)
 

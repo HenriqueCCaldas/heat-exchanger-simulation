@@ -29,14 +29,14 @@ time900NoBaffles = data4["Time"]
 
 # Choose the data to plot (Please select pairs 1-4, 2-5, 3-6)
 
-plt.plot(time900, diff1, label='Ushell = 0.01(m/s)', color='red')
-plt.plot(time900, diff2, label='Ushell = 0.03 (m/s)', color='blue')
-plt.plot(time900, diff3, label='Ushell = 0.05 (m/s)', color='green')
+plt.plot(time900, diff1, label='Uin = 0.01(m/s)', color='red')
+plt.plot(time900, diff2, label='Uin = 0.03 (m/s)', color='blue')
+plt.plot(time900, diff3, label='Uin = 0.05 (m/s)', color='green')
 
 plt.legend()
 plt.xlabel('Time (s)')
 plt.ylabel('Temperature (K)')
-plt.title('Outlet Average Temperature - Baffles vs No Baffles')
+plt.title('Outlet Average Temperature - Difference Baffles & No Baffles')
 plt.xticks(range(0, int(max(time900)) + 100, 100))
 
 fileName ="temperatureDifferenceBaffleNoBaffle"
