@@ -33,13 +33,15 @@ cp2 = 1396.018 + (0.172 * temperature2)  # J/kg*K
 density2 = 2263.723 - (0.636 * temperature2)  # kg/m^3
 cp3 = 1396.018 + (0.172 * temperature3)  # J/kg*K
 density3 = 2263.723 - (0.636 * temperature3)  # kg/m^3
+cp4 = 1396.018 + (0.172 * temperature4)  # J/kg*K
+density4 = 2263.723 - (0.636 * temperature4)  # kg/m^3
 area = 0.04 * 0.04 * math.pi  # m^2
 initialTemperature =  563.15 # K
 
 Q1 = cp1 * density1 * ((temperature1 - initialTemperature) * velocity1) * area * 1/1000 # W to kW
 Q2 = cp2 * density2 * ((temperature2 - initialTemperature) * velocity2) * area * 1/1000 # W to kW
 Q3 = cp3 * density3 * ((temperature3 - initialTemperature) * velocity3) * area * 1/1000 # W to kW
-#Q4 = cp  * density * ((temperature4 - initialTemperature) * velocity4) * area * 1/1000
+Q4 = cp4  * density4 * ((temperature4 - initialTemperature) * velocity4) * area * 1/1000
 
 plt.plot(time900, Q1, label='Ushell = 0.005(m/s)', color='red')
 #plt.plot(time900, Q1v2, label='Ushell = 0.01(m/s) - No Resistance', color='green')
