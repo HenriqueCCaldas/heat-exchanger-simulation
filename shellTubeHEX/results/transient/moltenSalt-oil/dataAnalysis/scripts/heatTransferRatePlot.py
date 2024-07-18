@@ -57,12 +57,12 @@ Q3 = cp3 * density3 * ((temperature3 - initialTemperature) * velocity3) * area *
 Q4 = cp4 * density4 * ((temperature4 - initialTemperature) * velocity4) * area * 1/1000 # W to kW
 Q5 = cp5 * density5 * ((temperature5 - initialTemperature) * velocity5) * area * 1/1000 # W to kW   
 
-plt.plot(time900, Q1, label='Ushell = 0.005(m/s)', color='red')
+plt.plot(time900, Q1, label='Uin = 0.005(m/s)', color='red')
 #plt.plot(time900, Q1v2, label='Ushell = 0.01(m/s) - No Resistance', color='green')
-plt.plot(time900, Q2, label='Ushell = 0.01(m/s)', color='blue')
-plt.plot(time900v2, Q3, label='Ushell = 0.03(m/s)', color='green')
-plt.plot(time900v2, Q4, label='Ushell = 0.05(m/s)', color='black')
-plt.plot(time900, Q5, label='Ushell = 0.079(m/s)', color='orange')
+plt.plot(time900, Q2, label='Uin = 0.01(m/s)', color='blue')
+plt.plot(time900v2, Q3, label='Uin = 0.03(m/s)', color='green')
+plt.plot(time900v2, Q4, label='Uin = 0.05(m/s)', color='black')
+plt.plot(time900, Q5, label='Uin = 0.079(m/s)', color='orange')
 
 plt.legend()
 plt.xlabel('Time (s)', fontsize = 12)

@@ -24,11 +24,11 @@ time900v2 = data3["Time"]
 
 # Choose the data to plot (Please select pairs 1-4, 2-5, 3-6)
 
-plt.plot(time900, temperature1, label='Ushell = 0.005 (m/s)', color='red')
-plt.plot(time900, temperature2, label='Ushell = 0.010(m/s)', color='blue')
-plt.plot(time900v2, temperature3, label='Ushell = 0.030 (m/s)', color='green')
-plt.plot(time900v2, temperature4, label='Ushell = 0.050 (m/s)', color='black')
-plt.plot(time900, temperature5, label='Ushell = 0.079 (m/s)', color='orange')
+plt.plot(time900, temperature1, label='Uin = 0.005 (m/s)', color='red')
+plt.plot(time900, temperature2, label='Uin = 0.010(m/s)', color='blue')
+plt.plot(time900v2, temperature3, label='Uin = 0.030 (m/s)', color='green')
+plt.plot(time900v2, temperature4, label='Uin = 0.050 (m/s)', color='black')
+plt.plot(time900, temperature5, label='Uin= 0.079 (m/s)', color='orange')
 
 
 plt.legend()
